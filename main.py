@@ -1,5 +1,5 @@
-from addressbook import AddressBook
 from command_handlers.handlers import *
+from storage import *
 
 hello_commands = ["hello", "hi"]
 close_commands = ["close", "exit", "leave", "baye"]
@@ -16,6 +16,7 @@ def handler(command, book, *args):
         
         if command in close_commands:
             print("Good bye!")
+            save_data(book)
             exit()
         elif command in hello_commands:
             print("How can I help you?")
@@ -46,7 +47,7 @@ def handler(command, book, *args):
 
 
 def main():
-    book = AddressBook()
+    book = load_data()
     print("Welcome to the assistant bot!")
     while True:
         user_input = input("Enter a command: ")
